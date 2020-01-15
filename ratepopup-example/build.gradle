@@ -6,7 +6,7 @@ apply plugin: 'com.github.ben-manes.versions'
 android {
     compileSdkVersion androidCompileSdkVersion
     defaultConfig {
-        applicationId "com.mikhaellopez.libnamesample"
+        applicationId "com.mikhaellopez.ratepopupsample"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode 1
@@ -25,8 +25,8 @@ android {
 }
 
 dependencies {
-    implementation project(':libname')
-    //implementation "com.mikhaellopez:libname:$androidVersionName"
+    implementation project(':ratepopup')
+    //implementation "com.mikhaellopez:ratepopup:$androidVersionName"
 
     // KOTLIN
     implementation kotlinStdlib

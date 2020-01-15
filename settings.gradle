@@ -1,1 +1,1 @@
-include ':libname-example', ':libname'
+include ':ratepopup-example', ':ratepopup'

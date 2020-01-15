@@ -33,12 +33,12 @@ dependencies {
 
 //region Publish to jCenter
 def libGroupId = 'com.mikhaellopez'
-def libArtifactId = 'libname'
+def libArtifactId = 'ratepopup'
 def libVersion = androidVersionName
 def libDesc = ''
 def libLicenses = ['Apache-2.0']
-def libSiteUrl = 'https://github.com/lopspower/LibName'
-def libVCSUrl = 'https://github.com/lopspower/LibName.git'
+def libSiteUrl = 'https://github.com/lopspower/RatePopup'
+def libVCSUrl = 'https://github.com/lopspower/RatePopup.git'
 
 // Generate Source Jar
 task sourceJar(type: Jar) {
