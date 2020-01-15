@@ -1,0 +1,39 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+ext {
+    // APP VERSION
+    androidVersionCode          = 1
+    androidVersionName          = '1.0.0'
+
+    // ANDROID VERSION
+    androidCompileSdkVersion    = 29
+    androidMinSdkVersion        = 16
+    androidTargetSdkVersion     = 29
+
+    // KOTLIN
+    kotlinStdlib                = "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_version}"
+
+    // ANDROID LIB
+    androidAppCompatXVersion    = '1.1.0'
+    androidXAppCompat           = "androidx.appcompat:appcompat:$androidAppCompatXVersion"
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdatesStrategy = {
+        componentSelection { rules ->
+            rules.all { ComponentSelection selection ->
+                boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                    selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+                }
+                if (rejected) {
+                    selection.reject('Release candidate')
+                }
+            }
+        }
+    }
+
+}
