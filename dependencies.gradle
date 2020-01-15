@@ -20,7 +20,9 @@ ext {
 
     // ANDROID LIB
     androidAppCompatXVersion    = '1.1.0'
+    materialVersion             = '1.0.0'
     androidXAppCompat           = "androidx.appcompat:appcompat:$androidAppCompatXVersion"
+    materialDesign              = "com.google.android.material:material:$materialVersion"
 
     // DEPENDENCY CHECK STRATEGY
     dependencyUpdatesStrategy = {

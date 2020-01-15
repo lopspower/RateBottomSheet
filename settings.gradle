@@ -1,1 +1,1 @@
-include ':ratepopup-example', ':ratepopup'
+include ':ratebottomsheet-example', ':ratebottomsheet'

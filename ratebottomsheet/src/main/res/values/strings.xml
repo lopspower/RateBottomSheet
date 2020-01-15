@@ -6,8 +6,7 @@
     <string name="rate_popup_ask_no">No really</string>
 
     <string name="rate_popup_title">Rate this app</string>
-    <string name="rate_popup_message">Would you mind taking a moment to rate it? It won\'t take more than a minute.\nThanks for your support!</string>
+    <string name="rate_popup_message">Would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
     <string name="rate_popup_ok">Rate It Now</string>
-    <string name="rate_popup_cancel">Remind Me Later</string>
     <string name="rate_popup_no">No, Thanks</string>
 </resources>

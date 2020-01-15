@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 apply plugin: 'com.github.ben-manes.versions'
@@ -26,6 +27,8 @@ android {
 dependencies {
     // KOTLIN
     implementation kotlinStdlib
+    // ANDROID
+    implementation materialDesign
 
     // DEPENDENCY CHECK STRATEGY
     dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
@@ -33,12 +36,12 @@ dependencies {
 
 //region Publish to jCenter
 def libGroupId = 'com.mikhaellopez'
-def libArtifactId = 'ratepopup'
+def libArtifactId = 'ratebottomsheet'
 def libVersion = androidVersionName
 def libDesc = ''
 def libLicenses = ['Apache-2.0']
-def libSiteUrl = 'https://github.com/lopspower/RatePopup'
-def libVCSUrl = 'https://github.com/lopspower/RatePopup.git'
+def libSiteUrl = 'https://github.com/lopspower/RateBottomSheet'
+def libVCSUrl = 'https://github.com/lopspower/RateBottomSheet.git'
 
 // Generate Source Jar
 task sourceJar(type: Jar) {
