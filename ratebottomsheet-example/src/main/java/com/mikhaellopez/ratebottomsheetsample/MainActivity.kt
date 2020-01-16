@@ -2,7 +2,7 @@ package com.mikhaellopez.ratebottomsheetsample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mikhaellopez.ratebottomsheet.RateBottomSheet
+import com.mikhaellopez.ratebottomsheet.AskRateBottomSheet
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnShowRate.setOnClickListener { RateBottomSheet.show(supportFragmentManager) }
+        btnShowRate.setOnClickListener { AskRateBottomSheet.show(supportFragmentManager) }
     }
 
 }

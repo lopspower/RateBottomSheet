@@ -1,10 +1,6 @@
 package com.mikhaellopez.ratebottomsheet
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -15,11 +11,11 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
-class RateBottomSheet : BottomSheetDialogFragment() {
+class AskRateBottomSheet : BottomSheetDialogFragment() {
 
     companion object {
         fun show(manager: FragmentManager) {
-            RateBottomSheet().show(manager, "rateBottomSheet")
+            AskRateBottomSheet().show(manager, "askRateBottomSheet")
         }
     }
 
@@ -32,6 +28,11 @@ class RateBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        textRateBottomSheetTitle.text = getString(R.string.rate_popup_ask_title)
+        textRateBottomSheetMessage.text = getString(R.string.rate_popup_ask_message)
+        btnRateBottomSheetNo.text = getString(R.string.rate_popup_ask_no)
+        btnRateBottomSheetOk.text = getString(R.string.rate_popup_ask_ok)
+
         context?.also {
             btnRateBottomSheetNo.setTextColor(getThemeAccentColor(it))
             btnRateBottomSheetOk.setTextColor(getThemeAccentColor(it))
@@ -40,26 +41,8 @@ class RateBottomSheet : BottomSheetDialogFragment() {
         btnRateBottomSheetCancel.setOnClickListener { dismiss() }
         btnRateBottomSheetNo.setOnClickListener { dismiss() }
         btnRateBottomSheetOk.setOnClickListener {
-            activity?.run { openStore(packageName) }
+            activity?.run { RateBottomSheet.show(supportFragmentManager) }
             dismiss()
-        }
-    }
-
-    private fun Activity.openStore(appPackageName: String) {
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=$appPackageName")
-                )
-            )
-        } catch (_: ActivityNotFoundException) {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                )
-            )
         }
     }
 
