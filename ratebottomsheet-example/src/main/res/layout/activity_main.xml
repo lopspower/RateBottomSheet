@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnShowRate"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"

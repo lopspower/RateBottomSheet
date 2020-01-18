@@ -14,7 +14,7 @@ class PreferenceHelper(context: Context) {
         private const val PREF_FILE_NAME = "rate_bottom_sheet_pref"
         private const val PREF_INSTALL_DAYS = "pref_rate_install_days"
         private const val PREF_CPT_LAUNCH_TIMES = "pref_rate_cpt_launch_times"
-        private const val PREF_IS_AGREE_SHOW_DIALOG = "pref_rate_is_agree_show_dialog"
+        private const val PREF_IS_AGREE_SHOW_BOTTOM_SHEET = "pref_rate_is_agree_show_bottom_sheet"
         private const val PREF_REMIND_INTERVAL = "pref_rate_remind_interval"
     }
 
@@ -37,11 +37,11 @@ class PreferenceHelper(context: Context) {
         }
     }
 
-    fun isAgreeShowDialog(): Boolean =
-        sharedPreferences.getBoolean(PREF_IS_AGREE_SHOW_DIALOG, true)
+    fun isAgreeShowBottomSheet(): Boolean =
+        sharedPreferences.getBoolean(PREF_IS_AGREE_SHOW_BOTTOM_SHEET, true)
 
-    fun disableAgreeShowDialog() {
-        sharedPreferences.put(PREF_IS_AGREE_SHOW_DIALOG, false)
+    fun disableAgreeShowBottomSheet() {
+        sharedPreferences.put(PREF_IS_AGREE_SHOW_BOTTOM_SHEET, false)
     }
 
     fun getRemindInterval(): Long =

@@ -31,8 +31,8 @@ class RateBottomSheetManager(context: Context) {
 
     private val preferenceHelper = PreferenceHelper(context)
 
-    internal fun shouldShowRateDialog(): Boolean {
-        val isAgreeShowDialog = preferenceHelper.isAgreeShowDialog()
+    internal fun shouldShowRateBottomSheet(): Boolean {
+        val isAgreeShowBottomSheet = preferenceHelper.isAgreeShowBottomSheet()
         val isOverInstallDays = preferenceHelper.getInstallDays().isOverDate(installDays)
         val isOverLaunchTimes = preferenceHelper.getCptLaunchTimes() >= launchTimes
         val isOverRemindInterval = preferenceHelper.getRemindInterval().isOverDate(remindInterval)
@@ -41,7 +41,7 @@ class RateBottomSheetManager(context: Context) {
             Log.d(
                 "RateBottomSheetManager",
                 " \nRateBottomSheet Conditions:\n" +
-                        "- isAgreeShowDialog = $isAgreeShowDialog\n" +
+                        "- isAgreeShowBottomSheet = $isAgreeShowBottomSheet\n" +
                         "- isOverLaunchTimes = $isOverLaunchTimes : cptLaunchTimes = ${preferenceHelper.getCptLaunchTimes()}\n" +
                         "- isOverInstallDays = $isOverInstallDays : " +
                         "${preferenceHelper.getInstallDays().showOverCondition(installDays)})\n" +
@@ -51,7 +51,7 @@ class RateBottomSheetManager(context: Context) {
         }
 
         return debugForceOpenEnable
-                || (isAgreeShowDialog && isOverLaunchTimes
+                || (isAgreeShowBottomSheet && isOverLaunchTimes
                 && isOverInstallDays && isOverRemindInterval)
     }
 
@@ -60,7 +60,7 @@ class RateBottomSheetManager(context: Context) {
     }
 
     internal fun disableAgreeShowDialog() {
-        preferenceHelper.disableAgreeShowDialog()
+        preferenceHelper.disableAgreeShowBottomSheet()
     }
 
     //region SET PUBLIC

@@ -23,19 +23,19 @@ class RateBottomSheet : ABaseRateBottomSheet() {
             RateBottomSheet().show(manager, "rateBottomSheet")
         }
 
-        fun showRateDialogIfMeetsConditions(activity: AppCompatActivity) {
-            showRateDialogIfMeetsConditions(
+        fun showRateBottomSheetIfMeetsConditions(activity: AppCompatActivity) {
+            showRateBottomSheetIfMeetsConditions(
                 activity.applicationContext,
                 activity.supportFragmentManager
             )
         }
 
-        fun showRateDialogIfMeetsConditions(fragment: Fragment) {
-            (fragment.activity as? AppCompatActivity)?.also { showRateDialogIfMeetsConditions(it) }
+        fun showRateBottomSheetIfMeetsConditions(fragment: Fragment) {
+            (fragment.activity as? AppCompatActivity)?.also { showRateBottomSheetIfMeetsConditions(it) }
         }
 
-        fun showRateDialogIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
-            if (RateBottomSheetManager(context).shouldShowRateDialog()) {
+        fun showRateBottomSheetIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
+            if (RateBottomSheetManager(context).shouldShowRateBottomSheet()) {
                 if (RateBottomSheetManager.showAskBottomSheet) {
                     AskRateBottomSheet.show(fragmentManager)
                 } else {

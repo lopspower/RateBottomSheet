@@ -13,15 +13,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         RateBottomSheetManager(this)
-            .setInstallDays(0)
-            .setLaunchTimes(0)
-            .setRemindInterval(0)
-            .setDebugLogEnable(true)
+            .setInstallDays(1) // 3 by default
+            .setLaunchTimes(2) // 5 by default
+            .setRemindInterval(1) // 2 by default
+            .setShowAskBottomSheet(true) // True by default
+            .setShowLaterButton(true) // True by default
+            .setShowCloseButtonIcon(true) // True by default
+            .setDebugLogEnable(true) // False by default
             .monitor()
 
-        RateBottomSheet.showRateDialogIfMeetsConditions(this)
+        // Show bottom sheet if meets conditions
+        RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
 
-        btnShowRate.setOnClickListener { RateBottomSheet.showRateDialogIfMeetsConditions(this) }
+        btnShowRate.setOnClickListener {
+            RateBottomSheetManager(this)
+                .setDebugForceOpenEnable(true) // False by default
+            RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
+        }
     }
 
 }
