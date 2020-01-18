@@ -2,18 +2,39 @@ package com.mikhaellopez.ratebottomsheet
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
+/**
+ * Copyright (C) 2020 Mikhael LOPEZ
+ * Licensed under the Apache License Version 2.0
+ */
 class RateBottomSheet : ABaseRateBottomSheet() {
 
     companion object {
         fun show(manager: FragmentManager) {
             RateBottomSheet().show(manager, "rateBottomSheet")
+        }
+
+        fun showRateDialogIfMeetsConditions(activity: AppCompatActivity) {
+            showRateDialogIfMeetsConditions(activity.applicationContext, activity.supportFragmentManager)
+        }
+
+        fun showRateDialogIfMeetsConditions(fragment: Fragment) {
+            (fragment.activity as? AppCompatActivity)?.also { showRateDialogIfMeetsConditions(it) }
+        }
+
+        fun showRateDialogIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
+            if (RateBottomSheetManager(context).shouldShowRateDialog()) {
+                AskRateBottomSheet.show(fragmentManager)
+            }
         }
     }
 

@@ -5,6 +5,10 @@ import android.view.View
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
+/**
+ * Copyright (C) 2020 Mikhael LOPEZ
+ * Licensed under the Apache License Version 2.0
+ */
 class AskRateBottomSheet : ABaseRateBottomSheet() {
 
     companion object {

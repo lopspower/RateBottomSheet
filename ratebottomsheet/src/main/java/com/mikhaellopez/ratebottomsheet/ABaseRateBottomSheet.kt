@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
+/**
+ * Copyright (C) 2020 Mikhael LOPEZ
+ * Licensed under the Apache License Version 2.0
+ */
 abstract class ABaseRateBottomSheet: BottomSheetDialogFragment() {
 
     override fun onCreateView(
