@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="rate_popup_ask_title">Like this App?</string>
-    <string name="rate_popup_ask_message">Do you like used this application?</string>
-    <string name="rate_popup_ask_ok">Yes a lot</string>
-    <string name="rate_popup_ask_no">No really</string>
+    <string name="rate_popup_ask_message">Do you like using this application?</string>
+    <string name="rate_popup_ask_ok">Yes I do</string>
+    <string name="rate_popup_ask_no">Not really</string>
 
     <string name="rate_popup_title">Rate this app</string>
     <string name="rate_popup_message">Would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
-    <string name="rate_popup_ok">Rate It Now</string>
-    <string name="rate_popup_no">No, Thanks</string>
+    <string name="rate_popup_ok">Rate it now</string>
+    <string name="rate_popup_later">Remind me later</string>
+    <string name="rate_popup_no">No, thanks</string>
 </resources>

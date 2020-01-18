@@ -24,7 +24,10 @@ class RateBottomSheet : ABaseRateBottomSheet() {
         }
 
         fun showRateDialogIfMeetsConditions(activity: AppCompatActivity) {
-            showRateDialogIfMeetsConditions(activity.applicationContext, activity.supportFragmentManager)
+            showRateDialogIfMeetsConditions(
+                activity.applicationContext,
+                activity.supportFragmentManager
+            )
         }
 
         fun showRateDialogIfMeetsConditions(fragment: Fragment) {
@@ -33,7 +36,11 @@ class RateBottomSheet : ABaseRateBottomSheet() {
 
         fun showRateDialogIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
             if (RateBottomSheetManager(context).shouldShowRateDialog()) {
-                AskRateBottomSheet.show(fragmentManager)
+                if (RateBottomSheetManager.showAskBottomSheet) {
+                    AskRateBottomSheet.show(fragmentManager)
+                } else {
+                    show(fragmentManager)
+                }
             }
         }
     }
@@ -41,9 +48,13 @@ class RateBottomSheet : ABaseRateBottomSheet() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnRateBottomSheetLater.visibility =
+            if (RateBottomSheetManager.showLaterButton) View.VISIBLE else View.GONE
+
         textRateBottomSheetTitle.text = getString(R.string.rate_popup_title)
         textRateBottomSheetMessage.text = getString(R.string.rate_popup_message)
         btnRateBottomSheetNo.text = getString(R.string.rate_popup_no)
+        btnRateBottomSheetLater.text = getString(R.string.rate_popup_later)
         btnRateBottomSheetOk.text = getString(R.string.rate_popup_ok)
 
         btnRateBottomSheetOk.setOnClickListener {

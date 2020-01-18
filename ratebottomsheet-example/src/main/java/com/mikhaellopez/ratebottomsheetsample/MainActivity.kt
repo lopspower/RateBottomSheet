@@ -15,8 +15,11 @@ class MainActivity : AppCompatActivity() {
         RateBottomSheetManager(this)
             .setInstallDays(0)
             .setLaunchTimes(0)
+            .setRemindInterval(0)
             .setDebugLogEnable(true)
             .monitor()
+
+        RateBottomSheet.showRateDialogIfMeetsConditions(this)
 
         btnShowRate.setOnClickListener { RateBottomSheet.showRateDialogIfMeetsConditions(this) }
     }

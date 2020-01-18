@@ -1,6 +1,7 @@
 package com.mikhaellopez.ratebottomsheet
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Copyright (C) 2020 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
-abstract class ABaseRateBottomSheet: BottomSheetDialogFragment() {
+abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,19 +26,29 @@ abstract class ABaseRateBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnRateBottomSheetCancel.visibility =
+            if (RateBottomSheetManager.showLaterButton) View.VISIBLE else View.GONE
+
         context?.also {
-            btnRateBottomSheetNo.setTextColor(getThemeAccentColor(it))
-            btnRateBottomSheetOk.setTextColor(getThemeAccentColor(it))
+            btnRateBottomSheetOk.backgroundTintList =
+                ColorStateList.valueOf(getThemeAccentColor(it))
         }
 
         btnRateBottomSheetCancel.setOnClickListener { dismiss() }
-        btnRateBottomSheetNo.setOnClickListener { dismiss() }
+        btnRateBottomSheetNo.setOnClickListener {
+            RateBottomSheetManager(it.context).disableAgreeShowDialog()
+            dismiss()
+        }
+        btnRateBottomSheetLater.setOnClickListener {
+            RateBottomSheetManager(it.context).setRemindInterval()
+            dismiss()
+        }
     }
 
     private fun getThemeAccentColor(context: Context): Int {
         val colorAttr = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             android.R.attr.colorAccent
-        } else { //Get colorAccent defined for AppCompat
+        } else { // Get colorAccent defined for AppCompat
             context.resources.getIdentifier("colorAccent", "attr", context.packageName)
         }
         val outValue = TypedValue()

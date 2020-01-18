@@ -20,6 +20,7 @@ class AskRateBottomSheet : ABaseRateBottomSheet() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnRateBottomSheetLater.visibility = View.GONE
         textRateBottomSheetTitle.text = getString(R.string.rate_popup_ask_title)
         textRateBottomSheetMessage.text = getString(R.string.rate_popup_ask_message)
         btnRateBottomSheetNo.text = getString(R.string.rate_popup_ask_no)
