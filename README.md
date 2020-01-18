@@ -44,6 +44,23 @@ RateBottomSheetManager(this)
 RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
 ```
 
+Override string xml resources on your application to change the texts in bottom sheet:
+
+```xml
+<resources>
+    <string name="rate_popup_ask_title">Like this App?</string>
+    <string name="rate_popup_ask_message">Do you like using this application?</string>
+    <string name="rate_popup_ask_ok">Yes I do</string>
+    <string name="rate_popup_ask_no">Not really</string>
+
+    <string name="rate_popup_title">Rate this app</string>
+    <string name="rate_popup_message">Would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
+    <string name="rate_popup_ok">Rate it now</string>
+    <string name="rate_popup_later">Remind me later</string>
+    <string name="rate_popup_no">No, thanks</string>
+</resources>
+```
+
 SUPPORT ❤️
 -----
 
