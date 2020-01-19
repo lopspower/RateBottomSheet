@@ -36,7 +36,6 @@ RateBottomSheetManager(this)
     .setShowAskBottomSheet(false) // True by default
     .setShowLaterButton(false) // True by default
     .setShowCloseButtonIcon(false) // True by default
-    .setDebugLogEnable(true) // False by default
     .monitor()
 
 // Show bottom sheet if meets conditions
@@ -59,6 +58,26 @@ Override string xml resources on your application to change the texts in bottom 
     <string name="rate_popup_later">Remind me later</string>
     <string name="rate_popup_no">No, thanks</string>
 </resources>
+```
+
+DEBUG
+-----
+
+Enable `debugForceOpen` to show bottom sheet without conditions check like this:
+
+```kotlin
+RateBottomSheetManager(this)
+    .setDebugForceOpenEnable(true) // False by default
+
+// Don't forget to run showRate function
+RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
+```
+
+You can also enable logs with `debugLogEnable` properties:
+
+```kotlin
+RateBottomSheetManager(this)
+    .setDebugLogEnable(true) // False by default
 ```
 
 SUPPORT ❤️
