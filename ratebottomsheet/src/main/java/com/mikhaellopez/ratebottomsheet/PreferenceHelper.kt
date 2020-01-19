@@ -51,6 +51,13 @@ class PreferenceHelper(context: Context) {
         sharedPreferences.put(PREF_REMIND_INTERVAL, Date().time)
     }
 
+    fun clear() {
+        sharedPreferences.clear(PREF_INSTALL_DAYS)
+        sharedPreferences.clear(PREF_CPT_LAUNCH_TIMES)
+        sharedPreferences.clear(PREF_IS_AGREE_SHOW_BOTTOM_SHEET)
+        sharedPreferences.clear(PREF_REMIND_INTERVAL)
+    }
+
     //region Extensions
     private fun SharedPreferences.put(key: String, value: Boolean) {
         edit().putBoolean(key, value).apply()

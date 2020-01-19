@@ -88,6 +88,9 @@ class RateBottomSheetManager(context: Context) {
     fun setDebugLogEnable(debugLogEnable: Boolean): RateBottomSheetManager =
         apply { RateBottomSheetManager.debugLogEnable = debugLogEnable }
 
+    fun clear(): RateBottomSheetManager =
+        apply { preferenceHelper.clear() }
+
     fun monitor() {
         if (preferenceHelper.getInstallDays() == 0L) {
             preferenceHelper.setInstallDays()

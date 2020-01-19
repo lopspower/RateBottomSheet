@@ -58,7 +58,10 @@ class RateBottomSheet : ABaseRateBottomSheet() {
         btnRateBottomSheetOk.text = getString(R.string.rate_popup_ok)
 
         btnRateBottomSheetOk.setOnClickListener {
-            activity?.run { openStore(packageName) }
+            activity?.run {
+                openStore(packageName)
+                RateBottomSheetManager(it.context).disableAgreeShowDialog()
+            }
             dismiss()
         }
     }
