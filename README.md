@@ -7,6 +7,7 @@ RateBottomSheet
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
+[![Download](https://api.bintray.com/packages/lopspower/maven/com.mikhaellopez:ratebottomsheet/images/download.svg?version=1.0.1)](https://bintray.com/lopspower/maven/com.mikhaellopez:ratebottomsheet/1.0.1/link)
 <br>
 [![Twitter](https://img.shields.io/badge/Twitter-@LopezMikhael-blue.svg?style=flat)](http://twitter.com/lopezmikhael)
 
@@ -22,7 +23,7 @@ USAGE
 To used this usefull library you can grab it via Gradle:
 
 ```groovy
-implementation 'com.mikhaellopez:ratebottomsheet:1.0.0'
+implementation 'com.mikhaellopez:ratebottomsheet:1.0.1'
 ```
 
 KOTLIN
@@ -78,6 +79,13 @@ You can also enable logs with `debugLogEnable` properties:
 ```kotlin
 RateBottomSheetManager(this)
     .setDebugLogEnable(true) // False by default
+```
+
+Clear all current data from RateBottomSheet like this:
+
+```kotlin
+RateBottomSheetManager(this)
+    .clear()
 ```
 
 SUPPORT ❤️
