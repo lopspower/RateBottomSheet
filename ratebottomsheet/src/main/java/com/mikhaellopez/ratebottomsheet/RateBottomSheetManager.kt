@@ -155,6 +155,9 @@ class RateBottomSheetManager(context: Context) {
     fun clear(): RateBottomSheetManager =
         apply { preferenceHelper.clear() }
 
+    /**
+     * Record actions of users for the display conditions.
+     */
     fun monitor() {
         if (preferenceHelper.getInstallDays() == 0L) {
             preferenceHelper.setInstallDays()
