@@ -19,10 +19,15 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 class RateBottomSheet : ABaseRateBottomSheet() {
 
     companion object {
-        fun show(manager: FragmentManager) {
+        internal fun show(manager: FragmentManager) {
             RateBottomSheet().show(manager, "rateBottomSheet")
         }
 
+        /**
+         * Display rate bottom sheet if meets conditions.
+         *
+         * @param activity [AppCompatActivity]
+         */
         fun showRateBottomSheetIfMeetsConditions(activity: AppCompatActivity) {
             showRateBottomSheetIfMeetsConditions(
                 activity.applicationContext,
@@ -30,10 +35,21 @@ class RateBottomSheet : ABaseRateBottomSheet() {
             )
         }
 
+        /**
+         * Display rate bottom sheet if meets conditions.
+         *
+         * @param fragment [Fragment]
+         */
         fun showRateBottomSheetIfMeetsConditions(fragment: Fragment) {
             (fragment.activity as? AppCompatActivity)?.also { showRateBottomSheetIfMeetsConditions(it) }
         }
 
+        /**
+         * Display rate bottom sheet if meets conditions.
+         *
+         * @param context [Context]
+         * @param fragmentManager [FragmentManager]
+         */
         fun showRateBottomSheetIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
             if (RateBottomSheetManager(context).shouldShowRateBottomSheet()) {
                 if (RateBottomSheetManager.showAskBottomSheet) {

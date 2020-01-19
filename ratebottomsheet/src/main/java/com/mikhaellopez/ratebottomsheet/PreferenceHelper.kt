@@ -21,37 +21,37 @@ class PreferenceHelper(context: Context) {
     private val sharedPreferences =
         context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
 
-    fun getInstallDays(): Long =
+    internal fun getInstallDays(): Long =
         sharedPreferences.getLong(PREF_INSTALL_DAYS, 0)
 
-    fun setInstallDays() {
+    internal fun setInstallDays() {
         sharedPreferences.put(PREF_INSTALL_DAYS, Date().time)
     }
 
-    fun getCptLaunchTimes(): Int =
+    internal fun getCptLaunchTimes(): Int =
         sharedPreferences.getInt(PREF_CPT_LAUNCH_TIMES, 0)
 
-    fun setCptLaunchTimes() {
+    internal fun setCptLaunchTimes() {
         sharedPreferences.getInt(PREF_CPT_LAUNCH_TIMES, 0).also {
             sharedPreferences.put(PREF_CPT_LAUNCH_TIMES, it + 1)
         }
     }
 
-    fun isAgreeShowBottomSheet(): Boolean =
+    internal fun isAgreeShowBottomSheet(): Boolean =
         sharedPreferences.getBoolean(PREF_IS_AGREE_SHOW_BOTTOM_SHEET, true)
 
-    fun disableAgreeShowBottomSheet() {
+    internal fun disableAgreeShowBottomSheet() {
         sharedPreferences.put(PREF_IS_AGREE_SHOW_BOTTOM_SHEET, false)
     }
 
-    fun getRemindInterval(): Long =
+    internal fun getRemindInterval(): Long =
         sharedPreferences.getLong(PREF_REMIND_INTERVAL, 0)
 
-    fun setRemindInterval() {
+    internal fun setRemindInterval() {
         sharedPreferences.put(PREF_REMIND_INTERVAL, Date().time)
     }
 
-    fun clear() {
+    internal fun clear() {
         sharedPreferences.clear(PREF_INSTALL_DAYS)
         sharedPreferences.clear(PREF_CPT_LAUNCH_TIMES)
         sharedPreferences.clear(PREF_IS_AGREE_SHOW_BOTTOM_SHEET)

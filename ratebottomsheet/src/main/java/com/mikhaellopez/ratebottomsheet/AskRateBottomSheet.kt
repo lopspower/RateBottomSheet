@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 class AskRateBottomSheet : ABaseRateBottomSheet() {
 
     companion object {
-        fun show(manager: FragmentManager) {
+        internal fun show(manager: FragmentManager) {
             AskRateBottomSheet().show(manager, "askRateBottomSheet")
         }
     }
