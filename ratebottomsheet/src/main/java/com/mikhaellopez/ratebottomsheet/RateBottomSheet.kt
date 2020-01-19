@@ -41,7 +41,12 @@ class RateBottomSheet : ABaseRateBottomSheet() {
          * @param fragment [Fragment]
          */
         fun showRateBottomSheetIfMeetsConditions(fragment: Fragment) {
-            (fragment.activity as? AppCompatActivity)?.also { showRateBottomSheetIfMeetsConditions(it) }
+            (fragment.activity as? AppCompatActivity)?.also {
+                showRateBottomSheetIfMeetsConditions(
+                    it.applicationContext,
+                    fragment.childFragmentManager
+                )
+            }
         }
 
         /**
