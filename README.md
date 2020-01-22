@@ -89,6 +89,21 @@ RateBottomSheetManager(this)
     .clear()
 ```
 
+JAVA
+-----
+
+You can call `showRateBottomSheetIfMeetsConditions` func like this:
+
+```java
+RateBottomSheet.Companion.showRateBottomSheetIfMeetsConditions(this);
+```
+
+And because this library it's write in Kotlin you need to add **kotlin-stdlib** dependency on your java project:
+
+```groovy
+implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.61'
+```
+
 SUPPORT ❤️
 -----
 
