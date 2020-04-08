@@ -17,11 +17,6 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  */
 abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
 
-    protected val defaultNoClickListener = View.OnClickListener {
-        RateBottomSheetManager(it.context).disableAgreeShowDialog()
-        dismiss()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,11 +35,18 @@ abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
         }
 
         btnRateBottomSheetCancel.setOnClickListener { dismiss() }
-        btnRateBottomSheetNo.setOnClickListener(defaultNoClickListener)
-        btnRateBottomSheetLater.setOnClickListener {
-            RateBottomSheetManager(it.context).setRemindInterval()
-            dismiss()
-        }
+        btnRateBottomSheetNo.setOnClickListener { defaultBtnNoClickAction(it) }
+        btnRateBottomSheetLater.setOnClickListener { defaultBtnLaterClickAction(it) }
+    }
+
+    protected fun defaultBtnNoClickAction(view: View) {
+        RateBottomSheetManager(view.context).disableAgreeShowDialog()
+        dismiss()
+    }
+
+    private fun defaultBtnLaterClickAction(view: View) {
+        RateBottomSheetManager(view.context).setRemindInterval()
+        dismiss()
     }
 
     private fun getThemeAccentColor(context: Context): Int {

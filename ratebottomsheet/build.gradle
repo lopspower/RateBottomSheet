@@ -27,7 +27,6 @@ android {
 dependencies {
     // KOTLIN
     implementation kotlinStdlib
-
     // ANDROID
     implementation materialDesign
 

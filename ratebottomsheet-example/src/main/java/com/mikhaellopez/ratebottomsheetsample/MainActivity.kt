@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             .setDebugLogEnable(true) // False by default
             .monitor()
 
-        // the listener is optional, as well as each single callback:
+        // The listener is optional, as well as each single callback:
         // you can choose which one you want to override
         val actionListener = object : AskRateBottomSheet.ActionListener {
             override fun onDislikeClickListener() {
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             RateBottomSheetManager(this)
                 .setDebugForceOpenEnable(true) // False by default
             RateBottomSheet.showRateBottomSheetIfMeetsConditions(
-                activity = this, // can also be: fragment = this
+                activity = this,
                 listener = actionListener
             )
         }

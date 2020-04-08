@@ -9,15 +9,20 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Copyright (C) 2020 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
-@Suppress("MemberVisibilityCanBePrivate")
 class AskRateBottomSheet(
     val listener: ActionListener? = null
 ) : ABaseRateBottomSheet() {
 
     /**
-     * See .RateBottomSheet.ActionListener for more callbacks :)
+     * You can use this listener if you choose to setShowAskBottomSheet(true)
+     * See .RateBottomSheet.ActionListener for more callbacks
+     *
+     * Each callback has an empty body, meaning that is optional
      */
     interface ActionListener : RateBottomSheet.ActionListener {
+        /**
+         * Will be called when a click on the "I don't like" button is triggered
+         */
         fun onDislikeClickListener() {}
     }
 
@@ -42,7 +47,7 @@ class AskRateBottomSheet(
         }
 
         btnRateBottomSheetNo.setOnClickListener {
-            defaultNoClickListener.onClick(it)
+            defaultBtnNoClickAction(it)
             listener?.onDislikeClickListener()
         }
     }

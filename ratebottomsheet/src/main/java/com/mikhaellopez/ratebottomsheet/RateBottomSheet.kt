@@ -16,13 +16,25 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Copyright (C) 2020 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
-@Suppress("MemberVisibilityCanBePrivate")
 class RateBottomSheet(
     val listener: ActionListener? = null
 ) : ABaseRateBottomSheet() {
 
+    /**
+     * You can use this listener if you choose to setShowAskBottomSheet(false)
+     * Otherwise, consider using .AskRateBottomSheet.ActionListener
+     *
+     * Each callback has an empty body, meaning that is optional
+     */
     interface ActionListener {
+        /**
+         * Will be called when a click on the "Rate" button is triggered
+         */
         fun onRateClickListener() {}
+
+        /**
+         * Will be called when a click on the "No thanks" button is triggered
+         */
         fun onNoClickListener() {}
     }
 
@@ -35,6 +47,7 @@ class RateBottomSheet(
          * Display rate bottom sheet if meets conditions.
          *
          * @param activity [AppCompatActivity]
+         * @param listener [AskRateBottomSheet.ActionListener]
          */
         fun showRateBottomSheetIfMeetsConditions(
             activity: AppCompatActivity,
@@ -51,6 +64,7 @@ class RateBottomSheet(
          * Display rate bottom sheet if meets conditions.
          *
          * @param fragment [Fragment]
+         * @param listener [AskRateBottomSheet.ActionListener]
          */
         fun showRateBottomSheetIfMeetsConditions(
             fragment: Fragment,
@@ -70,6 +84,7 @@ class RateBottomSheet(
          *
          * @param context [Context]
          * @param fragmentManager [FragmentManager]
+         * @param listener [AskRateBottomSheet.ActionListener]
          */
         fun showRateBottomSheetIfMeetsConditions(
             context: Context,
@@ -108,7 +123,7 @@ class RateBottomSheet(
         }
 
         btnRateBottomSheetNo.setOnClickListener {
-            defaultNoClickListener.onClick(it)
+            defaultBtnNoClickAction(it)
             listener?.onNoClickListener()
         }
     }
