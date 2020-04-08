@@ -62,6 +62,32 @@ Override string xml resources on your application to change the texts in bottom 
 </resources>
 ```
 
+LISTENER
+-----
+
+When calling `RateBottomSheet.showRateBottomSheetIfMeetsConditions(...)` you can choose to add another parameter of type `AskRateBottomSheet.ActionListener`; this allows you to implement 3 optional callbacks.
+Here is how:
+
+```kotlin
+RateBottomSheet.showRateBottomSheetIfMeetsConditions(
+    this,
+    listener = object : AskRateBottomSheet.ActionListener {
+        override fun onDislikeClickListener() {
+            // Will be called when a click on the "I don't like" button is triggered
+        }
+
+        override fun onRateClickListener() {
+            // Will be called when a click on the "Rate" button is triggered
+        }
+
+        /*override fun onNoClickListener() {
+            // Will be called when a click on the "No thanks" button is triggered,
+            // in this example is commented,
+            // but each callback is optional and it's up to you whether to implement it or not!
+        }*/
+)
+```
+
 DEBUG
 -----
 
@@ -101,7 +127,7 @@ RateBottomSheet.Companion.showRateBottomSheetIfMeetsConditions(this);
 And because this library it's write in Kotlin you need to add **kotlin-stdlib** dependency on your java project:
 
 ```groovy
-implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.61'
+implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.71'
 ```
 
 SUPPORT ❤️

@@ -35,14 +35,18 @@ abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
         }
 
         btnRateBottomSheetCancel.setOnClickListener { dismiss() }
-        btnRateBottomSheetNo.setOnClickListener {
-            RateBottomSheetManager(it.context).disableAgreeShowDialog()
-            dismiss()
-        }
-        btnRateBottomSheetLater.setOnClickListener {
-            RateBottomSheetManager(it.context).setRemindInterval()
-            dismiss()
-        }
+        btnRateBottomSheetNo.setOnClickListener { defaultBtnNoClickAction(it) }
+        btnRateBottomSheetLater.setOnClickListener { defaultBtnLaterClickAction(it) }
+    }
+
+    protected fun defaultBtnNoClickAction(view: View) {
+        RateBottomSheetManager(view.context).disableAgreeShowDialog()
+        dismiss()
+    }
+
+    private fun defaultBtnLaterClickAction(view: View) {
+        RateBottomSheetManager(view.context).setRemindInterval()
+        dismiss()
     }
 
     private fun getThemeAccentColor(context: Context): Int {
