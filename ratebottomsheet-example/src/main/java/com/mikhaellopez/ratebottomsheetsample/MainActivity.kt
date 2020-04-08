@@ -1,7 +1,9 @@
 package com.mikhaellopez.ratebottomsheetsample
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mikhaellopez.ratebottomsheet.AskRateBottomSheet
 import com.mikhaellopez.ratebottomsheet.RateBottomSheet
 import com.mikhaellopez.ratebottomsheet.RateBottomSheetManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,13 +24,44 @@ class MainActivity : AppCompatActivity() {
             .setDebugLogEnable(true) // False by default
             .monitor()
 
+        // the listener is optional, as well as each single callback:
+        // you can choose which one you want to override
+        val actionListener = object : AskRateBottomSheet.ActionListener {
+            override fun onDislikeClickListener() {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Oh... that's sad! :(",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onRateClickListener() {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Great choice! ♡",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onNoClickListener() {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Well... at least you like it, I'm ok with that",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
         // Show bottom sheet if meets conditions
         RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
 
         btnShowRate.setOnClickListener {
             RateBottomSheetManager(this)
                 .setDebugForceOpenEnable(true) // False by default
-            RateBottomSheet.showRateBottomSheetIfMeetsConditions(this)
+            RateBottomSheet.showRateBottomSheetIfMeetsConditions(
+                activity = this, // can also be: fragment = this
+                listener = actionListener
+            )
         }
     }
 

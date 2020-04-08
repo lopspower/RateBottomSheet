@@ -25,7 +25,7 @@ ext {
     // MATERIAL DESIGN
     materialDesignGroupId       = "com.google.android.material"
     materialDesignArtifactId    = "material"
-    materialDesignVersion       = '1.0.0'
+    materialDesignVersion       = '1.1.0'
     materialDesign              = "$materialDesignGroupId:$materialDesignArtifactId:$materialDesignVersion"
 
     // DEPENDENCY CHECK STRATEGY
