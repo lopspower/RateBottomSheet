@@ -80,11 +80,12 @@ RateBottomSheet.showRateBottomSheetIfMeetsConditions(
             // Will be called when a click on the "Rate" button is triggered
         }
 
-        //override fun onNoClickListener() {
+        /*override fun onNoClickListener() {
             // Will be called when a click on the "No thanks" button is triggered,
             // in this example is commented,
             // but each callback is optional and it's up to you whether to implement it or not!
-        //}
+        }*/
+    }
 )
 ```
 
