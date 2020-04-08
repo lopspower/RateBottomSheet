@@ -16,11 +16,19 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Copyright (C) 2020 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
-class RateBottomSheet : ABaseRateBottomSheet() {
+@Suppress("MemberVisibilityCanBePrivate")
+class RateBottomSheet(
+    val listener: ActionListener? = null
+) : ABaseRateBottomSheet() {
+
+    interface ActionListener {
+        fun onRateClickListener() {}
+        fun onNoClickListener() {}
+    }
 
     companion object {
-        internal fun show(manager: FragmentManager) {
-            RateBottomSheet().show(manager, "rateBottomSheet")
+        internal fun show(manager: FragmentManager, listener: ActionListener? = null) {
+            RateBottomSheet(listener).show(manager, "rateBottomSheet")
         }
 
         /**
@@ -28,10 +36,14 @@ class RateBottomSheet : ABaseRateBottomSheet() {
          *
          * @param activity [AppCompatActivity]
          */
-        fun showRateBottomSheetIfMeetsConditions(activity: AppCompatActivity) {
+        fun showRateBottomSheetIfMeetsConditions(
+            activity: AppCompatActivity,
+            listener: AskRateBottomSheet.ActionListener? = null
+        ) {
             showRateBottomSheetIfMeetsConditions(
                 activity.applicationContext,
-                activity.supportFragmentManager
+                activity.supportFragmentManager,
+                listener
             )
         }
 
@@ -40,11 +52,15 @@ class RateBottomSheet : ABaseRateBottomSheet() {
          *
          * @param fragment [Fragment]
          */
-        fun showRateBottomSheetIfMeetsConditions(fragment: Fragment) {
+        fun showRateBottomSheetIfMeetsConditions(
+            fragment: Fragment,
+            listener: AskRateBottomSheet.ActionListener? = null
+        ) {
             (fragment.activity as? AppCompatActivity)?.also {
                 showRateBottomSheetIfMeetsConditions(
                     it.applicationContext,
-                    fragment.childFragmentManager
+                    fragment.childFragmentManager,
+                    listener
                 )
             }
         }
@@ -55,10 +71,14 @@ class RateBottomSheet : ABaseRateBottomSheet() {
          * @param context [Context]
          * @param fragmentManager [FragmentManager]
          */
-        fun showRateBottomSheetIfMeetsConditions(context: Context, fragmentManager: FragmentManager) {
+        fun showRateBottomSheetIfMeetsConditions(
+            context: Context,
+            fragmentManager: FragmentManager,
+            listener: AskRateBottomSheet.ActionListener? = null
+        ) {
             if (RateBottomSheetManager(context).shouldShowRateBottomSheet()) {
                 if (RateBottomSheetManager.showAskBottomSheet) {
-                    AskRateBottomSheet.show(fragmentManager)
+                    AskRateBottomSheet.show(fragmentManager, listener)
                 } else {
                     show(fragmentManager)
                 }
@@ -84,6 +104,12 @@ class RateBottomSheet : ABaseRateBottomSheet() {
                 RateBottomSheetManager(it.context).disableAgreeShowDialog()
             }
             dismiss()
+            listener?.onRateClickListener()
+        }
+
+        btnRateBottomSheetNo.setOnClickListener {
+            defaultNoClickListener.onClick(it)
+            listener?.onNoClickListener()
         }
     }
 

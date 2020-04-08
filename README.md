@@ -101,7 +101,7 @@ RateBottomSheet.Companion.showRateBottomSheetIfMeetsConditions(this);
 And because this library it's write in Kotlin you need to add **kotlin-stdlib** dependency on your java project:
 
 ```groovy
-implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.61'
+implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.71'
 ```
 
 SUPPORT ❤️
