@@ -27,7 +27,7 @@ abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnRateBottomSheetCancel.visibility =
-            if (RateBottomSheetManager.showLaterButton) View.VISIBLE else View.GONE
+            if (RateBottomSheetManager.showCloseButtonIcon) View.VISIBLE else View.GONE
 
         context?.also {
             btnRateBottomSheetOk.backgroundTintList =
