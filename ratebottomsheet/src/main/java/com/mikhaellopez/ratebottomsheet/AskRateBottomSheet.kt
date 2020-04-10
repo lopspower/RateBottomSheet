@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Licensed under the Apache License Version 2.0
  */
 class AskRateBottomSheet(
-    val listener: ActionListener? = null
+    private val listener: ActionListener? = null
 ) : ABaseRateBottomSheet() {
 
     /**

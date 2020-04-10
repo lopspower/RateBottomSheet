@@ -8,6 +8,8 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
@@ -21,7 +23,18 @@ abstract class ABaseRateBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.rate_bottom_sheet_layout, container, false)
+    ): View? {
+        dialog?.setOnShowListener { dialog ->
+            (dialog as? BottomSheetDialog)?.also {
+                it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+                    ?.also { bottomSheetInternal ->
+                        BottomSheetBehavior.from(bottomSheetInternal).state =
+                            BottomSheetBehavior.STATE_EXPANDED
+                    }
+            }
+        }
+        return inflater.inflate(R.layout.rate_bottom_sheet_layout, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
