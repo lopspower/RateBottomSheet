@@ -21,7 +21,7 @@ This an Android library to help to promote your Android App by prompting users t
 USAGE
 -----
 
-To used this usefull library you can grab it via Gradle:
+To use this useful library you can grab it via Gradle:
 
 ```groovy
 implementation 'com.mikhaellopez:ratebottomsheet:1.1.0'
