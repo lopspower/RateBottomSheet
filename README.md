@@ -7,10 +7,7 @@ RateBottomSheet
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
-[![Download](https://api.bintray.com/packages/lopspower/maven/com.mikhaellopez:ratebottomsheet/images/download.svg?version=1.1.0)](https://bintray.com/lopspower/maven/com.mikhaellopez:ratebottomsheet/1.1.0/link)
-<br>
 [![Twitter](https://img.shields.io/badge/Twitter-@LopezMikhael-blue.svg?style=flat)](http://twitter.com/lopezmikhael)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0225b845d594403cbf1be79efdcba93b)](https://www.codacy.com/manual/lopspower/RateBottomSheet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lopspower/RateBottomSheet&amp;utm_campaign=Badge_Grade)
 
 This an Android library to help to promote your Android App by prompting users to **rate** your app in the Google Play Store with a material design friendly **BottomSheet**.
 
