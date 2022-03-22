@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
 
@@ -17,7 +16,11 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Licensed under the Apache License Version 2.0
  */
 class RateBottomSheet(
-    private val listener: ActionListener? = null
+    private val listener: ActionListener? = null,
+    private val askInfo: AskInfo? = null,
+    private val rateInfo: RateInfo? = null,
+    private val customUrl: String? = null,
+    private val customPackageId: String? = null
 ) : ABaseRateBottomSheet() {
 
     /**
@@ -39,8 +42,18 @@ class RateBottomSheet(
     }
 
     companion object {
-        internal fun show(manager: FragmentManager, listener: ActionListener? = null) {
-            RateBottomSheet(listener).show(manager, "rateBottomSheet")
+        internal fun show(
+            manager: FragmentManager,
+            listener: ActionListener? = null,
+            askInfo: AskInfo? = null,
+            rateInfo: RateInfo? = null,
+            customPackageId: String? = null,
+            customUrl: String? = null
+        ) {
+            RateBottomSheet(listener, askInfo, rateInfo, customUrl, customPackageId).show(
+                manager,
+                "rateBottomSheet"
+            )
         }
 
         /**
@@ -51,32 +64,19 @@ class RateBottomSheet(
          */
         fun showRateBottomSheetIfMeetsConditions(
             activity: AppCompatActivity,
-            listener: AskRateBottomSheet.ActionListener? = null
+            listener: AskRateBottomSheet.ActionListener? = null,
+            askInfo: AskInfo? = null,
+            rateInfo: RateInfo? = null,
+            customPackageId: String? = null,
+            customUrl: String? = null
         ) {
             showRateBottomSheetIfMeetsConditions(
                 activity.applicationContext,
                 activity.supportFragmentManager,
-                listener
+                listener,
+                askInfo,
+                rateInfo, customPackageId, customUrl
             )
-        }
-
-        /**
-         * Display rate bottom sheet if meets conditions.
-         *
-         * @param fragment [Fragment]
-         * @param listener [AskRateBottomSheet.ActionListener]
-         */
-        fun showRateBottomSheetIfMeetsConditions(
-            fragment: Fragment,
-            listener: AskRateBottomSheet.ActionListener? = null
-        ) {
-            (fragment.activity as? AppCompatActivity)?.also {
-                showRateBottomSheetIfMeetsConditions(
-                    it.applicationContext,
-                    fragment.childFragmentManager,
-                    listener
-                )
-            }
         }
 
         /**
@@ -86,16 +86,33 @@ class RateBottomSheet(
          * @param fragmentManager [FragmentManager]
          * @param listener [AskRateBottomSheet.ActionListener]
          */
-        fun showRateBottomSheetIfMeetsConditions(
+        private fun showRateBottomSheetIfMeetsConditions(
             context: Context,
             fragmentManager: FragmentManager,
-            listener: AskRateBottomSheet.ActionListener? = null
+            listener: AskRateBottomSheet.ActionListener? = null,
+            askInfo: AskInfo? = null,
+            rateInfo: RateInfo? = null,
+            customPackageId: String? = null,
+            customUrl: String? = null
         ) {
             if (RateBottomSheetManager(context).shouldShowRateBottomSheet()) {
                 if (RateBottomSheetManager.showAskBottomSheet) {
-                    AskRateBottomSheet.show(fragmentManager, listener)
+                    AskRateBottomSheet.show(
+                        fragmentManager,
+                        listener,
+                        askInfo,
+                        rateInfo,
+                        customPackageId,
+                        customUrl
+                    )
                 } else {
-                    show(fragmentManager)
+                    show(
+                        fragmentManager,
+                        askInfo = askInfo,
+                        rateInfo = rateInfo,
+                        customPackageId = customPackageId,
+                        customUrl = customUrl
+                    )
                 }
             }
         }
@@ -107,15 +124,16 @@ class RateBottomSheet(
         btnRateBottomSheetLater.visibility =
             if (RateBottomSheetManager.showLaterButton) View.VISIBLE else View.GONE
 
-        textRateBottomSheetTitle.text = getString(R.string.rate_popup_title)
-        textRateBottomSheetMessage.text = getString(R.string.rate_popup_message)
-        btnRateBottomSheetNo.text = getString(R.string.rate_popup_no)
-        btnRateBottomSheetLater.text = getString(R.string.rate_popup_later)
-        btnRateBottomSheetOk.text = getString(R.string.rate_popup_ok)
+        setupViewsTexts()
 
         btnRateBottomSheetOk.setOnClickListener {
             activity?.run {
-                openStore(packageName)
+                val uri = when {
+                    customPackageId != null -> customPackageId
+                    customUrl != null -> customUrl
+                    else -> packageName
+                }
+                openStore(uri)
                 RateBottomSheetManager(it.context).disableAgreeShowDialog()
             }
             dismiss()
@@ -126,6 +144,15 @@ class RateBottomSheet(
             defaultBtnNoClickAction(it)
             listener?.onNoClickListener()
         }
+    }
+
+    private fun setupViewsTexts() {
+        textRateBottomSheetTitle.text = rateInfo?.title ?: getString(R.string.rate_popup_title)
+        textRateBottomSheetMessage.text =
+            rateInfo?.message ?: getString(R.string.rate_popup_message)
+        btnRateBottomSheetNo.text = rateInfo?.cancelText ?: getString(R.string.rate_popup_no)
+        btnRateBottomSheetLater.text = rateInfo?.laterText ?: getString(R.string.rate_popup_later)
+        btnRateBottomSheetOk.text = rateInfo?.okText ?: getString(R.string.rate_popup_ok)
     }
 
     private fun Activity.openStore(appPackageName: String) {

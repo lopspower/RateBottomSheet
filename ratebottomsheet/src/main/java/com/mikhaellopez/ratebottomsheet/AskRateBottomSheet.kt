@@ -10,7 +10,11 @@ import kotlinx.android.synthetic.main.rate_bottom_sheet_layout.*
  * Licensed under the Apache License Version 2.0
  */
 class AskRateBottomSheet(
-    private val listener: ActionListener? = null
+    private val listener: ActionListener? = null,
+    private val askInfo: AskInfo? = null,
+    private val rateInfo: RateInfo? = null,
+    private val customPackageId: String? = null,
+    private val customUrl: String? = null
 ) : ABaseRateBottomSheet() {
 
     /**
@@ -27,8 +31,22 @@ class AskRateBottomSheet(
     }
 
     companion object {
-        internal fun show(manager: FragmentManager, listener: ActionListener? = null) {
-            AskRateBottomSheet(listener).show(manager, "askRateBottomSheet")
+        internal fun show(
+            manager: FragmentManager,
+            listener: ActionListener? = null,
+            askInfo: AskInfo? = null,
+            rateInfo: RateInfo? = null,
+            customPackageId: String? = null,
+            customUrl: String? = null
+        ) {
+            AskRateBottomSheet(
+                listener,
+                askInfo,
+                rateInfo,
+                customPackageId,
+                customUrl
+            )
+                .show(manager, "askRateBottomSheet")
         }
     }
 
@@ -36,13 +54,22 @@ class AskRateBottomSheet(
         super.onViewCreated(view, savedInstanceState)
 
         btnRateBottomSheetLater.visibility = View.GONE
-        textRateBottomSheetTitle.text = getString(R.string.rate_popup_ask_title)
-        textRateBottomSheetMessage.text = getString(R.string.rate_popup_ask_message)
-        btnRateBottomSheetNo.text = getString(R.string.rate_popup_ask_no)
-        btnRateBottomSheetOk.text = getString(R.string.rate_popup_ask_ok)
+        textRateBottomSheetTitle.text = askInfo?.title ?: getString(R.string.rate_popup_ask_title)
+        textRateBottomSheetMessage.text = askInfo?.message ?: getString(R.string.rate_popup_ask_message)
+        btnRateBottomSheetNo.text = askInfo?.cancelText ?: getString(R.string.rate_popup_ask_no)
+        btnRateBottomSheetOk.text = askInfo?.okText ?: getString(R.string.rate_popup_ask_ok)
 
         btnRateBottomSheetOk.setOnClickListener {
-            activity?.run { RateBottomSheet.show(supportFragmentManager, listener) }
+            activity?.run {
+                RateBottomSheet.show(
+                    supportFragmentManager,
+                    listener,
+                    askInfo,
+                    rateInfo,
+                    customPackageId,
+                    customUrl
+                )
+            }
             dismiss()
         }
 
